@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  
+  --color-background: #0B0F19;
+  --color-foreground: #E6F1FF;
+  --color-accent-cyan: #00D1FF;
+  --color-accent-teal: #14F1D9;
+  --color-accent-violet: #8B5CF6;
+  
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-marquee: marquee 40s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground selection:bg-accent-cyan/30 selection:text-white antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/10;
+  }
+  
+  .glass-card {
+    @apply bg-white/5 border border-white/10 hover:bg-white/[0.08] transition-colors;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-br from-[#E6F1FF] via-[#E6F1FF] to-[#E6F1FF]/30;
+  }
+
+  .grid-bg {
+    @apply absolute inset-0 opacity-10 pointer-events-none;
+    background-image: radial-gradient(#00D1FF 0.5px, transparent 0.5px);
+    background-size: 32px 32px;
+  }
+}
